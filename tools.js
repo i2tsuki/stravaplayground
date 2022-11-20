@@ -8,7 +8,7 @@ function getActivityIDs() {
     let activities = [];
     document.querySelectorAll('[data-testid="activity_name"]').forEach(function(node) {activities.push(node.getAttribute("href").replace("/activities/", ""))});
     console.log(activities);
-}
+};
 
 // Remove activities that you've already kudo
 function removeKudoEntries() {
@@ -21,3 +21,13 @@ function removeKudoEntries() {
 };
 removeKudoEntries();
 
+// Filter athlete join entries in your feed
+function removeAthleteJoinEntries() {
+    document.querySelectorAll("div[class^='_-_-packages-feed-ui-src-features-FeedEntry__entry-container--']").forEach(function(node) {
+        let isAthleteJoin = node.querySelector("div[class^='_-_-packages-feed-ui-src-components-media-Media-Media__media--vJldK _-_-packages-feed-ui-src-components-AthleteJoinEntry-AthleteJoinEntry__media']");
+        if (isAthleteJoin) {
+            node.remove();
+        }
+    });
+};
+removeAthleteJoinEntries();
