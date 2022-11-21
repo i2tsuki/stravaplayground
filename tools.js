@@ -19,7 +19,6 @@ function removeKudoEntries() {
         }
     });
 };
-removeKudoEntries();
 
 // Filter athlete join entries in your feed
 function removeAthleteJoinEntries() {
@@ -30,4 +29,16 @@ function removeAthleteJoinEntries() {
         }
     });
 };
-removeAthleteJoinEntries();
+
+// Filter yourself entries in your feed
+let athleteId = "";
+function removeYourselfEntries() {
+    document.querySelectorAll("div[class^='_-_-packages-feed-ui-src-features-FeedEntry__entry-container--']").forEach(function(node) {
+        let yourself = document.querySelector("[data-testid='owner-avatar']").getAttribute("href").includes(athleteId);
+        if (yourself) {
+            node.remove();
+        }
+    });
+};
+
+removeKudoEntries(); removeAthleteJoinEntries(); removeYourselfEntries();
