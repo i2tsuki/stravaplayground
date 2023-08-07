@@ -1,4 +1,4 @@
-#/usr/bin/env node
+#!/usr/bin/env node
 
 // Kudo all displayed activities in your feed
 document.querySelectorAll('[data-testid="kudos_button"]').forEach(function(node) {node.click()});
@@ -12,7 +12,7 @@ function getActivityIDs() {
 
 // Remove activities that you've already kudo
 function removeKudoEntries() {
-    document.querySelectorAll("div[class^='_-_-packages-feed-ui-src-features-FeedEntry__entry-container--']").forEach(function(node) {
+    document.querySelectorAll("div[data-testid='web-feed-entry']").forEach(function(node) {
         let kudoButton = node.querySelector('[data-testid="filled_kudos"]');
         if (kudoButton) {
          node.remove();   
@@ -22,7 +22,7 @@ function removeKudoEntries() {
 
 // Filter athlete join entries in your feed
 function removeAthleteJoinEntries() {
-    document.querySelectorAll("div[class^='_-_-packages-feed-ui-src-features-FeedEntry__entry-container--']").forEach(function(node) {
+    document.querySelectorAll("div[data-testid='web-feed-entry']").forEach(function(node) {
         let isAthleteJoin = node.querySelector("div[class^='_-_-packages-feed-ui-src-components-media-Media-Media__media--vJldK _-_-packages-feed-ui-src-components-AthleteJoinEntry-AthleteJoinEntry__media']");
         if (isAthleteJoin) {
             node.remove();
@@ -33,7 +33,7 @@ function removeAthleteJoinEntries() {
 // Filter yourself entries in your feed
 let athleteId = "";
 function removeYourselfEntries() {
-    document.querySelectorAll("div[class^='_-_-packages-feed-ui-src-features-FeedEntry__entry-container--']").forEach(function(node) {
+    document.querySelectorAll("div[data-testid='web-feed-entry']").forEach(function(node) {
         let yourself = document.querySelector("[data-testid='owner-avatar']").getAttribute("href").includes(athleteId);
         if (yourself) {
             node.remove();
