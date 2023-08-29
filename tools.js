@@ -31,7 +31,10 @@ function removeAthleteJoinEntries() {
 };
 
 // Filter yourself entries in your feed
-let athleteId = "";
+let athleteProfile = document.getElementById("athlete-profile");
+let athleteUrl = athleteProfile.querySelectorAll("a[href^='/athletes/']")[0].href;
+let athleteId = athleteUrl.replace("https://www.strava.com/athletes/", "");
+
 function removeYourselfEntries() {
     document.querySelectorAll("div[data-testid='web-feed-entry']").forEach(function(node) {
         let yourself = document.querySelector("[data-testid='owner-avatar']").getAttribute("href").includes(athleteId);
@@ -41,4 +44,8 @@ function removeYourselfEntries() {
     });
 };
 
-removeKudoEntries(); removeAthleteJoinEntries(); removeYourselfEntries();
+function removeCheckedEntries() {
+    removeKudoEntries(); removeAthleteJoinEntries(); removeYourselfEntries();
+}
+
+removeCheckedEntries();
